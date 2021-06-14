@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
-using TreeStructure.Repositories;
 
 namespace TreeStructure.Serveces
 {
@@ -16,13 +15,11 @@ namespace TreeStructure.Serveces
     {
         private readonly TreeStructureDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly INodeTreeRepository _repository;
 
-        public NodeTreeService(TreeStructureDbContext dbContext, IMapper mapper, INodeTreeRepository repository)
+        public NodeTreeService(TreeStructureDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _repository = repository;
         }
 
         public List<NodeTreeDto> GetNodetrees()
