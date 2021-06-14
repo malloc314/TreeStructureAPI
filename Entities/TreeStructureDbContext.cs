@@ -12,5 +12,7 @@ namespace TreeStructure.Entities
         public TreeStructureDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<NodeTree> NodeTrees { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
     }
 }
