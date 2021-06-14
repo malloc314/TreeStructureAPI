@@ -9,11 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TreeStructure.Wrappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TreeStructure.Controllers
 {
     [Route("api/nodetree")]
     [ApiController]
+    [Authorize]
     public class NodeTreeController : ControllerBase
     {
         private readonly INodeTreeService _service;
@@ -24,6 +26,7 @@ namespace TreeStructure.Controllers
         }
 
         [HttpGet("get")]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult GetNodeTrees()
         {
             var trees = _service.GetNodetrees();
@@ -32,6 +35,7 @@ namespace TreeStructure.Controllers
         }
 
         [HttpGet("get/{guid}")]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult GetNodeTree([FromRoute] Guid guid)
         {
             var tree = _service.GetNodetree(guid);
@@ -44,6 +48,7 @@ namespace TreeStructure.Controllers
         }
 
         [HttpGet("sort/{guid}/{node}/{sort}")]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult GetSortNodeTree([FromRoute] Guid guid, string node, string sort)
         {
             var tree = _service.GetSortNodetree(guid, node, sort);
@@ -56,6 +61,7 @@ namespace TreeStructure.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult CreateNodeTree([FromBody] CreateNodeTreeDto dto)
         {
             _service.CreateNodeTree(dto);
@@ -64,6 +70,7 @@ namespace TreeStructure.Controllers
         }
 
         [HttpPut("create/{guid}")]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult CreateNode([FromRoute] Guid guid, [FromBody] CreateNodeDto dto)
         {
             var isCreated = _service.CreateNode(guid, dto);
@@ -75,6 +82,7 @@ namespace TreeStructure.Controllers
         }
 
         [HttpPut("update/{guid}")]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult UpdateNode([FromRoute] Guid guid, [FromBody] UpdateNodeDto dto)
         {
             var isUpdated = _service.UpdateNode(guid, dto);
@@ -86,6 +94,7 @@ namespace TreeStructure.Controllers
         }
 
         [HttpDelete("delete/{guid}/{node}")]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Delete([FromRoute] Guid guid, [FromRoute] string node)
         {
             var isDeleted = _service.RemoveNode(guid, node);
