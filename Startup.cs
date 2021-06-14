@@ -46,6 +46,8 @@ namespace TreeStructure
                 });
             }
 
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
