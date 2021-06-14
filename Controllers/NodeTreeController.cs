@@ -12,8 +12,8 @@ using TreeStructure.Wrappers;
 
 namespace TreeStructure.Controllers
 {
-    [ApiController]
     [Route("api/nodetree")]
+    [ApiController]
     public class NodeTreeController : ControllerBase
     {
         private readonly INodeTreeService _service;
