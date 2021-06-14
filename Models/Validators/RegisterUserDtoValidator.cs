@@ -12,6 +12,10 @@ namespace TreeStructure.Models.Validators
     {
         public RegisterUserDtoValidator(TreeStructureDbContext dbContext)
         {
+            RuleFor(x => x.RoleId)
+                .ExclusiveBetween(0, 3)
+                .WithMessage("The RoleID must exclusive between 1, 2");
+
             RuleFor(x => x.Email)
                 .NotEmpty()
                 .EmailAddress();

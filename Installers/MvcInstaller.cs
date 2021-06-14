@@ -9,12 +9,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using TreeStructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using FluentValidation.AspNetCore;
 using TreeStructure.Models;
 using FluentValidation;
 using TreeStructure.Models.Validators;
+using TreeStructure.Middleware;
 
 namespace TreeStructure.Installers
 {
@@ -30,9 +30,9 @@ namespace TreeStructure.Installers
 
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
-            services.AddScoped<INodeTreeRepository, NodeTreeRepository>();
-
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
+
+            services.AddScoped<ErrorHandlingMiddleware>();
         }
     }
 }
