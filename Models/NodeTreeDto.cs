@@ -12,7 +12,7 @@ namespace TreeStructure.Models
     public class NodeTreeDto : IMap
     {
         public Guid Guid { get; set; }
-        public string stringObjectNodeTree { get; set; }
+        public string JsonNodeTree { get; set; }
 
         public void Mapping(Profile profile)
         {

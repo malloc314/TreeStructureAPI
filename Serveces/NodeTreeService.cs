@@ -39,7 +39,7 @@ namespace TreeStructure.Serveces
             var tree = _dbContext.NodeTrees
                 .FirstOrDefault(e => e.Guid == guid);
 
-            var json = tree.stringObjectNodeTree;
+            var json = tree.JsonNodeTree;
 
             var nodeTree = JsonSerializer
                 .Deserialize<GetNodeTreeDto>(json);
@@ -52,7 +52,7 @@ namespace TreeStructure.Serveces
             var tree = _dbContext.NodeTrees
                 .FirstOrDefault(e => e.Guid == guid);
 
-            var json = tree.stringObjectNodeTree;
+            var json = tree.JsonNodeTree;
 
             var nodeTree = JsonSerializer
                 .Deserialize<NodeTreeMethod>(json);
@@ -74,7 +74,7 @@ namespace TreeStructure.Serveces
 
             var mappingNodeTree = new NodeTree()
             {
-                stringObjectNodeTree = jsonSerialize
+                JsonNodeTree = jsonSerialize
             };
 
             _dbContext.Add(mappingNodeTree);
@@ -89,7 +89,7 @@ namespace TreeStructure.Serveces
             if (tree is null)
                 return false;
 
-            var json = tree.stringObjectNodeTree;
+            var json = tree.JsonNodeTree;
 
             var nodeTree = JsonSerializer
                     .Deserialize<NodeTreeMethod>(json);
@@ -100,7 +100,7 @@ namespace TreeStructure.Serveces
 
             json = JsonSerializer.Serialize(nodeTree);
 
-            tree.stringObjectNodeTree = json;
+            tree.JsonNodeTree = json;
 
             _dbContext.SaveChanges();
 
@@ -115,7 +115,7 @@ namespace TreeStructure.Serveces
             if (tree is null)
                 return false;
 
-            var json = tree.stringObjectNodeTree;
+            var json = tree.JsonNodeTree;
 
             var nodeTree = JsonSerializer
                     .Deserialize<NodeTreeMethod>(json);
@@ -124,7 +124,7 @@ namespace TreeStructure.Serveces
 
             json = JsonSerializer.Serialize(nodeTree);
 
-            tree.stringObjectNodeTree = json;
+            tree.JsonNodeTree = json;
 
             _dbContext.SaveChanges();
 
@@ -139,7 +139,7 @@ namespace TreeStructure.Serveces
             if (tree is null)
                 return false;
 
-            var json = tree.stringObjectNodeTree;
+            var json = tree.JsonNodeTree;
 
             var nodeTree = JsonSerializer
                     .Deserialize<NodeTreeMethod>(json);
@@ -148,7 +148,7 @@ namespace TreeStructure.Serveces
 
             json = JsonSerializer.Serialize(nodeTree);
 
-            tree.stringObjectNodeTree = json;
+            tree.JsonNodeTree = json;
 
             _dbContext.SaveChanges();
 

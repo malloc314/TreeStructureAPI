@@ -15,7 +15,8 @@ namespace TreeStructure.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Guid { get; set; }
-
-        public string stringObjectNodeTree { get; set; }
+        
+        [Required]
+        public string JsonNodeTree { get; set; }
     }
 }
