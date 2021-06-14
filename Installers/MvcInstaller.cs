@@ -10,6 +10,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TreeStructure.Repositories;
+using Microsoft.AspNetCore.Identity;
+using FluentValidation.AspNetCore;
+using TreeStructure.Models;
+using FluentValidation;
+using TreeStructure.Models.Validators;
 
 namespace TreeStructure.Installers
 {
@@ -17,15 +22,17 @@ namespace TreeStructure.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<TreeStructureDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("TreeStructureCsWin")));
-
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddControllers().AddFluentValidation();
 
             services.AddScoped<INodeTreeService, NodeTreeService>();
+            
+            services.AddScoped<IAccountService, AccountService>();
+
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
             services.AddScoped<INodeTreeRepository, NodeTreeRepository>();
 
-            services.AddControllers();
+            services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
         }
     }
 }
