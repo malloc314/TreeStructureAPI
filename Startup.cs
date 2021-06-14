@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TreeStructure.Middleware;
 
 namespace TreeStructure
 {
@@ -47,6 +48,8 @@ namespace TreeStructure
             }
 
             app.UseAuthentication();
+
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseHttpsRedirection();
 
