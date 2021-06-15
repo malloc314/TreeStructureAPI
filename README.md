@@ -6,24 +6,25 @@
 - [Punkty końcowe](#punkty-końcowe "Punkty końcowe")
 
 # Treść zadania
-Napisz proste **API** do organizowania i zapisywania na spotkania/eventy/seminaria.
+Zadanie polega na oprogramowaniu mechanizmu zarządzania strukturą drzewiastą wraz z implementacją poprawnej obsługi formularzy.
 
-API powinno umożliwiać:
+1. Założenia co do technologii:
 
-+ Utworzenie spotkania
-+ Usunięcie spotkania
-+ Zwrócenie listy spotkań
-+ Zapis uczestnika na spotkanie
-+ Wymaganie do spotkania:
-    + Obowiązuje limit 25 uczestników
-+ Wymagania do uczestników:
-    + Przy zapisie na spotkanie należy podać imię i adres e-mail
- 
-Aplikacja powinna być napisana w języku **`C#`** z wykorzystaniem platformy **`.NET 5.0`.**
-Bazą danych, może być dowolna baza **`SQL`** np. **`MSSQL`**, **`PostgreSQL`**, **`MySQL`** lub dokumentowa np. **`MongoDB`**.
++ baza danych MSSQL / MySQL / PostgreSQL,
++ ASP.NET / MVC / .NET Core,
++ HTML 5, CSS 3.
+
+2. Założenia dotyczące realizacja zadania:
+
++ struktura drzewiasta ma umożliwiać działanie na dowolnej ilości poziomów,
++ funkcje jakie mają być dostępne dla administratora: dodawanie, edycja, usuwania, sortowanie (zarówno węzłów jak i liści), przenoszenie węzłów do innych gałęzi,
++ powinna być możliwość rozwinięcia całej struktury lub wybranych węzłów,
++ powinny zostać zastosowane zabezpieczenia uniemożliwiające wprowadzanie nieprawidłowych danych,
++ wskazane zastosowanie skryptów client-side (własnych, nie gotowych rozwiązań jak np. jsTree)
++ obsługa formularzy powinna zawierać klasę do generowania formularzy wraz z wizualizacją, walidacją oraz zabezpieczeniami.
 
 # Opis zadania
-**Event organizer API** to prosta aplikacja backendowa napisana w standardzie **REST API** na potrzeby zadania rekrutacyjnego dla firmy **x-kom**. Z racji na prosty charakter, celowo pominąłem szereg dobrych praktyk związanych z projektowaniem i programowaniem jak na przykład: **podział struktury projektu na warstwy zgodnie z zasadami czystej architektury**, **dostateczna walidacja danych wejściowych** czy **optymalizacja** etc.
+**Tree structure API** to prosta aplikacja backendowa napisana w standardzie **REST API** na potrzeby zadania rekrutacyjnego.
 
 # Środowisko pracy
 Środowisko w jakim przyszło mi wykonać zadanie.
@@ -42,39 +43,55 @@ Pakiet Nuget | Opis
 AutoMapper  | Mapowanie modeli DTO
 Entity | Mapowanie baz danych
 Swagger | Dokumentacja API
+Fluent Validation | Walidacja modeli
+JWT Bearer | Logowanie/autoryzacja
 
 # Punkty końcowe
 - [x] Aktualnie dostępne
 - [ ] Wkrótce dostępne
 
-### api/event
-> Pobieranie wszystkich wydarzeń (widok administratora)
+### api/nodetree
+> Pobieranie wszystkich drzew
 
-- [x] **`GET` /api/event/admin** 
+- [x] **`GET` /api/nodetree/get** 
 
-> Pobieranie wszystkich wydarzeń (widok uczestnika)
+> Pobieranie drzwa węzłów po unikalnym identyfikatorze guid
 
-- [x]  **`GET` /api/event/member** 
+- [x]  **`GET` /api/nodetree/get/{guid}** 
 
-> Wyszukiwanie po temacie
+> Sortowanie wybranego drzewa {sort}: a-z lub z-a
 
-- [x]  **`GET` /api/event/{subject}** 
+- [x]  **`GET` /api/nodetree/sort/{guid}/{node}/{sort}** 
 
-> Tworzenie nowego wydarzenia
+> Tworzenie nowego drzewa węzłów przez format json
 
-- [x]  **`POST` /api/event**
+- [x]  **`POST` /api/nodetree/create**
 
-> Usuwanie nowego wydarzenia
+> Tworzenie nowego węzła w wybranym drzewie
 
-- [x]  **`DELETE` /api/event/{guid}**
+- [x]  **`PUT` /api/nodetree/create/{guid}**
 
-### api/member
-> Zapisanie uczestnika na wybrane wydarzenie
+> Aktualizowanie nazwy węzła w wybranym drzewie
 
-- [x]  **`POST` /api/member** 
+- [x]  **`PUT` /api/nodetree/update/{guid}**
 
-> Usuwanie uczestnika po identyfikatorze
+> Przenoszenie węzła w wybranym drzewie
 
-- [ ]  **`DELETE` /api/member/{guid}** 
+- [ ]  **`PUT` /api/nodetree/move/{guid}**
 
+> Usuwanie węzła w wybranym drzewie
 
+- [x]  **`DELETE` /api/nodetree/delete/{guid}/{node}**
+
+> Usuwanie drzewa węzłów
+
+- [ ]  **`DELETE` /api/nodetree/delete/{guid}**
+
+### api/account
+> Rejestracja użytkownika
+
+- [x]  **`POST` /api/account/register** 
+
+> Logowanie użytkownika
+
+- [x]  **`DELETE` /api/account/login** 
