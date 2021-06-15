@@ -85,11 +85,11 @@ namespace TreeStructure.Models
             {
                 root.Children.ForEach(x => pattern.Add(x.Data));
 
-                if (sort.ToLower() == "asc")
+                if (sort.ToLower() == "a-z")
                 {
                     pattern.Sort();
                 }
-                else if(sort.ToLower() == "dsc")
+                else if(sort.ToLower() == "z-a")
                 {
                     pattern.Sort();
                     pattern.Reverse();
