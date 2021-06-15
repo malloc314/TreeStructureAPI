@@ -55,11 +55,11 @@ JWT Bearer | Logowanie/autoryzacja
 
 - [x] **`GET` /api/nodetree/get** 
 
-> Pobieranie drzwa węzłów po unikalnym identyfikatorze guid
+> Pobieranie drzwa węzłów po unikalnym identyfikatorze {guid}
 
 - [x]  **`GET` /api/nodetree/get/{guid}** 
 
-> Sortowanie wybranego drzewa {sort}: a-z lub z-a
+> Sortowanie {sort}: a-z lub z-a wybranej gałęzi {node} drzewa węzłów {guid}
 
 - [x]  **`GET` /api/nodetree/sort/{guid}/{node}/{sort}** 
 
@@ -67,23 +67,23 @@ JWT Bearer | Logowanie/autoryzacja
 
 - [x]  **`POST` /api/nodetree/create**
 
-> Tworzenie nowego węzła w wybranym drzewie
+> Tworzenie nowego węzła w wybranym drzewie {guid}
 
 - [x]  **`PUT` /api/nodetree/create/{guid}**
 
-> Aktualizowanie nazwy węzła w wybranym drzewie
+> Aktualizowanie nazwy węzła w wybranym drzewie {guid}
 
 - [x]  **`PUT` /api/nodetree/update/{guid}**
 
-> Przenoszenie węzła w wybranym drzewie
+> Przenoszenie węzła w wybranym drzewie {guid}
 
 - [ ]  **`PUT` /api/nodetree/move/{guid}**
 
-> Usuwanie węzła w wybranym drzewie
+> Usuwanie węzła {node} w wybranym drzewie {guid}
 
 - [x]  **`DELETE` /api/nodetree/delete/{guid}/{node}**
 
-> Usuwanie drzewa węzłów
+> Usuwanie drzewa węzłów {guid}
 
 - [ ]  **`DELETE` /api/nodetree/delete/{guid}**
 
