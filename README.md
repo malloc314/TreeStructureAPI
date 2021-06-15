@@ -59,7 +59,7 @@ JWT Bearer | Logowanie/autoryzacja
 
 - [x]  **`GET` /api/nodetree/get/{guid}** 
 
-> Sortowanie {sort}: a-z lub z-a wybranej gałęzi {node} drzewa węzłów {guid}
+> Sortowanie {sort}: "a-z" lub "z-a" wybranej gałęzi {node} drzewa węzłów {guid}
 
 - [x]  **`GET` /api/nodetree/sort/{guid}/{node}/{sort}** 
 
