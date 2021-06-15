@@ -25,6 +25,9 @@ namespace TreeStructure.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Get all node trees
+        /// </summary>
         [HttpGet("get")]
         [Authorize(Roles = "User, Admin")]
         public ActionResult GetNodeTrees()
@@ -34,6 +37,9 @@ namespace TreeStructure.Controllers
             return Ok(trees);
         }
 
+        /// <summary>
+        /// Get node tree by guid
+        /// </summary>
         [HttpGet("get/{guid}")]
         [Authorize(Roles = "User, Admin")]
         public ActionResult GetNodeTree([FromRoute] Guid guid)
@@ -47,6 +53,9 @@ namespace TreeStructure.Controllers
             });
         }
 
+        /// <summary>
+        /// Sort a branch of the node tree. Sort: a-z or z-a
+        /// </summary>
         [HttpGet("sort/{guid}/{node}/{sort}")]
         [Authorize(Roles = "User, Admin")]
         public ActionResult GetSortNodeTree([FromRoute] Guid guid, string node, string sort)
@@ -60,6 +69,9 @@ namespace TreeStructure.Controllers
             });
         }
 
+        /// <summary>
+        /// Create node tree by json
+        /// </summary>
         [HttpPost("create")]
         [Authorize(Roles = "User, Admin")]
         public ActionResult CreateNodeTree([FromBody] CreateNodeTreeDto dto)
@@ -69,6 +81,9 @@ namespace TreeStructure.Controllers
             return Created("Created", null);
         }
 
+        /// <summary>
+        /// Create child node of parent node 
+        /// </summary>
         [HttpPut("create/{guid}")]
         [Authorize(Roles = "User, Admin")]
         public ActionResult CreateNode([FromRoute] Guid guid, [FromBody] CreateNodeDto dto)
@@ -81,6 +96,9 @@ namespace TreeStructure.Controllers
             return Ok($"Node {dto.NodeName} was created: {isCreated}");
         }
 
+        /// <summary>
+        /// Update node name
+        /// </summary>
         [HttpPut("update/{guid}")]
         [Authorize(Roles = "User, Admin")]
         public ActionResult UpdateNode([FromRoute] Guid guid, [FromBody] UpdateNodeDto dto)
@@ -93,6 +111,9 @@ namespace TreeStructure.Controllers
             return Ok($"Node {dto.OldName} was updated to {dto.NewName}");
         }
 
+        /// <summary>
+        /// Delete child node of parent node
+        /// </summary>
         [HttpDelete("delete/{guid}/{node}")]
         [Authorize(Roles = "User, Admin")]
         public ActionResult Delete([FromRoute] Guid guid, [FromRoute] string node)

@@ -20,6 +20,9 @@ namespace TreeStructure.Controllers
             _accountService = accountService;
         }
 
+        /// <summary>
+        /// Register the user in the system. RoleId: 1 - User, 2 - Admin
+        /// </summary>
         [HttpPost("register")]
         public ActionResult RegisterUser([FromBody] RegisterUserDto dto)
         {
@@ -28,6 +31,9 @@ namespace TreeStructure.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Login the user in the system
+        /// </summary>
         [HttpPost("login")]
         public ActionResult Login([FromBody] LoginDto dto)
         {
